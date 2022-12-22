@@ -45,11 +45,13 @@ local config = {
       relativenumber = true, -- sets vim.opt.relativenumber
       number = true, -- sets vim.opt.number
       spell = false, -- sets vim.opt.spell
-      signcolumn = "auto", -- sets vim.opt.signcolumn to auto
+      signcolumn = "yes:1",
       wrap = false, -- sets vim.opt.wrap
       textwidth = 80,
       colorcolumn = "81",
+      tabstop = 2,
       smartindent = true,
+      shiftwidth = 2,
       softtabstop = 2,
     },
     g = {
