@@ -473,9 +473,18 @@ local config = {
     map("n", "cd", ":lcd %:p:h<bar>lua print('current directory is ' .. vim.fn.getcwd())<CR>", { silent = false })
     map("n", "cu", "..<bar>pwd<CR>", { silent = false })
 
-    -- Easy navigation in *INSERT* mode
+    -- Moving left/right in *INSERT* mode
     map("i", "<C-h>", "<Left>", { noremap = true, silent = true })
     map("i", "<C-l>", "<Right>", { noremap = true, silent = true })
+
+    -- EasyAlign mappings
+    -- Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+    map("v", "<Enter>", "<Plug>(EasyAlign)")
+    -- Start interactive EasyAlign in visual mode (e.g. vipga)
+    map("x", "ga", "<Plug>(EasyAlign)")
+    -- Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    map("n", "ga", "<Plug>(EasyAlign)")
+
     -- Set autocommands
     local augroup = vim.api.nvim_create_augroup
     local TrimWhitespace = augroup("TrimWhitespace", { clear = true })
