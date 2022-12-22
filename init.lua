@@ -240,6 +240,14 @@ local config = {
       -- return the final configuration table
       return config
     end,
+    ["neo-tree"] = {
+      window = {
+        width = 28,
+        mappings = {
+          ["l"] = "open",
+        },
+      },
+    },
     init = {
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
