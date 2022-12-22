@@ -445,6 +445,20 @@ local config = {
     -- Select last pasted text
     map("n", "gV", "'`[' . strpart(getregtype(), 0, 1) . '`]'", { expr = true })
 
+    map("n", "J", "mzJ`z")
+    map("n", "n", "nzzzv")
+    map("n", "N", "Nzzzv")
+
+    map("x", "<leader>p", [["_dP]])
+
+    -- Move text around
+    map("v", "J", ":m '>+1<CR>gv=gv")
+    map("v", "K", ":m '<-2<CR>gv=gv")
+
+    -- Remap for dealing with word wrap
+    map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+    map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
     -- Make {motion} text uppercase in INSERT mode.
     map("!", "<C-f>", "<Esc>gUiw`]a", { noremap = false })
 
