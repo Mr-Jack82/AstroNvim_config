@@ -4,8 +4,6 @@
 -- You can think of a Lua "table" as a dictionary like data structure the
 -- normal format is "key = value". These also handle array like data structures
 -- where a value with no key simply has an implicit numeric key
-require "user.autocmds"
-
 local config = {
 
   -- Configure AstroNvim updates
@@ -442,6 +440,60 @@ local config = {
     map("i", "<C-h>", "<Left>", { noremap = true, silent = true })
     map("i", "<C-l>", "<Right>", { noremap = true, silent = true })
     -- Set autocommands
+    local augroup = vim.api.nvim_create_augroup
+    local TrimWhitespace = augroup("TrimWhitespace", { clear = true })
+
+    local autocmd = vim.api.nvim_create_autocmd
+
+    autocmd({ "BufWritePre" }, {
+      group = TrimWhitespace,
+      pattern = "*",
+      command = [[%s/\s\+$//e]],
+    })
+
+    -- Save cursor position
+    -- taken from lewis6991 https://github.com/neovim/neovim/issues/16339#issuecomment-1348133829
+    local ignore_buftype = { "quickfix", "nofile", "help" }
+    local ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" }
+
+    local function run()
+      if vim.tbl_contains(ignore_buftype, vim.bo.buftype) then return end
+
+      if vim.tbl_contains(ignore_filetype, vim.bo.filetype) then
+        -- reset cursor to first line
+        vim.cmd [[normal! gg]]
+        return
+      end
+
+      -- If a line has already been specified on the command line, we are done
+      --   nvim file +num
+      if vim.fn.line "." > 1 then return end
+
+      local last_line = vim.fn.line [['"]]
+      local buff_last_line = vim.fn.line "$"
+
+      -- If the last line is set and the less than the last line in the buffer
+      if last_line > 0 and last_line <= buff_last_line then
+        local win_last_line = vim.fn.line "w$"
+        local win_first_line = vim.fn.line "w0"
+        -- Check if the last line of the buffer is the same as the win
+        if win_last_line == buff_last_line then
+          -- Set line to last line edited
+          vim.cmd [[normal! g`"]]
+          -- Try to center
+        elseif buff_last_line - last_line > ((win_last_line - win_first_line) / 2) - 1 then
+          vim.cmd [[normal! g`"zz]]
+        else
+          vim.cmd [[normal! G'"<c-e>]]
+        end
+      end
+    end
+
+    autocmd({ "BufWinEnter", "FileType" }, {
+      group = vim.api.nvim_create_augroup("nvim-lastplace", {}),
+      callback = run,
+    })
+
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
