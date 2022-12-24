@@ -588,6 +588,9 @@ local config = {
       callback = run,
     })
 
+    vim.cmd [[ autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx ]]
+    vim.cmd [[ autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact ]]
+
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
