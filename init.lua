@@ -270,6 +270,9 @@ local config = {
 
       -- A Git wrapper so awesome it should be illegal
       ["tpope/vim-fugitive"] = {
+        requires = {
+          "tpope/vim-rhubarb",
+        },
         cmd = {
           "Git",
           "Gdiff",
