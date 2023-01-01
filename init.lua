@@ -98,6 +98,7 @@ local config = {
       smartindent = true,
       shiftwidth = 2,
       softtabstop = 2,
+      breakindentopt = "shift:2,min:20",
     },
     g = {
       mapleader = ",", -- sets vim.g.mapleader
@@ -501,6 +502,7 @@ local config = {
     map("n", "N", "Nzzzv")
 
     map("x", "<leader>p", [["_dP]])
+    map("n", "<leader>,", "<cmd>w<CR>")
 
     -- Move text around
     map("v", "J", ":m '>+1<CR>gv=gv")
