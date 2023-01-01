@@ -335,6 +335,9 @@ local config = {
         keys = { "[", "]" },
       },
 
+      -- Retro groove color theme for Vim
+      ["ellisonleao/gruvbox.nvim"] = {},
+
       -- A Vim aligment plugin
       ["junegunn/vim-easy-align"] = {},
 
