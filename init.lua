@@ -533,9 +533,15 @@ local config = {
     -- Start interactive EasyAlign for a motion/text object (e.g. gaip)
     map("n", "ga", "<Plug>(EasyAlign)")
 
+    -- Autosave settings
+    vim.g["auto_save"] = 1
+    vim.g["auto_save_silent"] = 1
+    vim.g["auto_save_events"] = { "InsertLeave", "TextChanged" }
+
     -- Set autocommands
     local augroup = vim.api.nvim_create_augroup
     local TrimWhitespace = augroup("TrimWhitespace", { clear = true })
+    local ft_javascript = augroup("ft_javascript", { clear = true })
 
     local autocmd = vim.api.nvim_create_autocmd
 
@@ -588,8 +594,22 @@ local config = {
       callback = run,
     })
 
-    vim.cmd [[ autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx ]]
-    vim.cmd [[ autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact ]]
+    autocmd({ "BufNewFile", "BufRead" }, {
+      pattern = "*.tsx",
+      callback = function() vim.bo.filetype = "typescript.tsx" end,
+    })
+
+    autocmd({ "BufNewFile", "BufRead" }, {
+      pattern = "*.jsx",
+      callback = function() vim.bo.filetype = "javascriptreact" end,
+    })
+
+    -- For vim-auto-save
+    autocmd({ "BufNewFile", "BufRead" }, {
+      group = ft_javascript,
+      pattern = { "*.js", "*.json" },
+      callback = function() vim.g["auto_save"] = 0 end,
+    })
 
     -- Set up custom filetypes
     -- vim.filetype.add {
