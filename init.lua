@@ -539,9 +539,9 @@ local config = {
     map("n", "ga", "<Plug>(EasyAlign)")
 
     -- Autosave settings
-    vim.g["auto_save"] = 1
-    vim.g["auto_save_silent"] = 1
-    vim.g["auto_save_events"] = { "InsertLeave", "TextChanged" }
+    vim.g.auto_save = 1
+    vim.g.auto_save_silent = 1
+    vim.g.auto_save_events = { "InsertLeave", "TextChanged" }
 
     -- Set autocommands
     local augroup = vim.api.nvim_create_augroup
@@ -613,7 +613,7 @@ local config = {
     autocmd({ "BufNewFile", "BufRead" }, {
       group = ft_javascript,
       pattern = { "*.js", "*.json" },
-      callback = function() vim.g["auto_save"] = 0 end,
+      callback = function() vim.g.auto_save = 0 end,
     })
 
     -- Set up custom filetypes
