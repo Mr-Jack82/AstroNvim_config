@@ -538,7 +538,7 @@ local config = {
     map("n", "ga", "<Plug>(EasyAlign)")
 
     -- Autosave settings
-    vim.g.auto_save = 1
+    vim.g.auto_save = 0
     vim.g.auto_save_silent = 1
     vim.g.auto_save_events = { "InsertLeave", "TextChanged" }
 
