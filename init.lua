@@ -254,7 +254,7 @@ local config = {
       ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
       ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
       -- quick save
-      -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+      ["<leader>w"] = { ":write!<cr>", desc = "Save File" },  -- change description but the same command
     },
     t = {
       -- setting a mapping to false will disable it
@@ -502,7 +502,6 @@ local config = {
     map("n", "N", "Nzzzv")
 
     map("x", "<leader>p", [["_dP]])
-    map("n", "<leader>,", "<cmd>w<CR>")
 
     -- Move text around
     map("v", "J", ":m '>+1<CR>gv=gv")
