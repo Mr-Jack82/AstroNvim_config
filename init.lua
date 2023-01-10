@@ -277,7 +277,7 @@ local config = {
         astronvim.status.component.git_diff(),
         astronvim.status.component.diagnostics(),
         astronvim.status.component.fill(),
-        astronvim.status.component.macro_recording(),
+        astronvim.status.component.cmd_info(),
         astronvim.status.component.fill(),
         astronvim.status.component.lsp(),
         astronvim.status.component.treesitter(),
