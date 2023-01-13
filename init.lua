@@ -505,6 +505,7 @@ local config = {
     map("n", "N", "Nzzzv")
 
     map("x", "<leader>p", [["_dP]])
+    map('n', 'db', 'vb"_d')
 
     -- Move text around
     map("v", "J", ":m '>+1<CR>gv=gv")
