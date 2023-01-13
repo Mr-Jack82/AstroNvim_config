@@ -349,6 +349,8 @@ local config = {
       -- A Vim plugin which saves files to disk automatically
       ["907th/vim-auto-save"] = {},
 
+      ["bluz71/vim-mistfly-statusline"] = {},
+
       -- Seamless navigation between tmux panes and vim splits
       ["christoomey/vim-tmux-navigator"] = {},
 
