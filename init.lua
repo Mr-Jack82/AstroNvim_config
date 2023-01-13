@@ -298,6 +298,7 @@ local config = {
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
       ["max397574/better-escape.nvim"] = { disable = true },
+      ["rebelot/heirline.nvim"] = { disable = true },
 
       -- You can also add new plugins here as well:
       -- Add plugins, the packer syntax without the "use"
